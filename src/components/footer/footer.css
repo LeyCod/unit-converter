@@ -1,0 +1,20 @@
+.main-footer {
+    width: 100%;
+    height: 39px;
+    position: absolute;
+    bottom: 0;
+    background: #2E0039;
+}
+
+.main-footer a {
+    width: 108px;
+    height: 18px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center ;
+}
+
