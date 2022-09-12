@@ -18,3 +18,14 @@
     text-align: center ;
 }
 
+.tos {
+    position: absolute;
+    right: 50%;
+    bottom: 10px;
+}
+
+.pp {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+}
