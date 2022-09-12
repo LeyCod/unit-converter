@@ -4,6 +4,6 @@
 - HTML
 - CSS 
 - ReactJS
+- React Hooks
 - Vite
-
 
