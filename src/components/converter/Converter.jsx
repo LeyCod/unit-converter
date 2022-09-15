@@ -5,38 +5,111 @@ import { FaExchangeAlt, FaMeetup, FaRegHeart} from "react-icons/fa";
 
 
 export const Converter = () => {
-    const [input, setInput] = useState(0)
-    console.log(input)
-    const [lengthUnit, setLengthUnit] = useState(["km", "m", "cm", "mi", "ft", "inch"]);
-    
+    const [inputValue, setInputValue] = useState(0);
+    const [selectValue, setSelectValue] = useState('');
+    const [fromUnit, setFromUnit] = useState('');
+    const [toUnit, setToUnit] = useState('');
+    const [result, setResult] = useState(0);
+
 // converter formulas
+
     const kilometersToMiles = (km) => {
-        return km * 0.62137;
+        const result = parseFloat(km) * 0.62137;
+        return result.toFixed(2)
     }
 
     const milesToKilometers = (mi) => {
-        return mi * 1,60934;
+        const result = parseFloat(mi) * 1.60934;
+        return result.toFixed(2)
     }
 
     const feetToMeters = (ft) => {
-        return ft * 0,3048;
+        const result = parseFloat(ft) * 0.3048;
+        return result.toFixed(2)
+
     }
 
     const metersToFeet = (m) => {
-        return m * 3,28084;
+        const result = parseFloat(m) * 3.28084;
+        return result.toFixed(2)
+
     }
 
     const centimetersToInches = (cm) => {
-        return cm * 0.3937;
+        const result = parseFloat(cm) * 0.3937;
+        return result.toFixed(2)
+
     }
 
     const inchesToCentimeters = (inch) => {
-        return inch * 2.54;
+        const result = parseFloat(inch) * 2.54;
+        return result.toFixed(2)
+
     }
 
-    const handelChange = () => {
-        
+//Handels 
+
+    const handelSelect = (e) => {
+        const value = e.target.value;
+        setSelectValue(value)
+        if (value === "kmtomi") {
+            setFromUnit("km")
+            setToUnit("mi")
+//            setResult(kilometersToMiles(inputValue))
+        } else if (value === "mitokm") {
+            setFromUnit("mi")
+            setToUnit("km")
+//            return milesToKilometers(inputValue)
+        } else if (value === "fttom") {
+            setFromUnit("ft")
+            setToUnit("m")
+//            return feetToMeters(inputValue)
+        } else if (value === "mtoft") {
+            setFromUnit("m")
+            setToUnit("ft")
+//            return metersToFeet(inputValue)
+        } else if (value === "cmtoinch") {
+            setFromUnit("cm")
+            setToUnit("inch")
+//            return centimetersToInches(inputValue)
+        } else if (value === "inchtocm") {
+            setFromUnit("inch")
+            setToUnit("cm")
+//            return inchesToCentimeters(inputValue)
+        }
     }
+
+    const handelInput = (e) => {
+        const value = e.target.value
+        setInputValue(value)
+
+        if (selectValue === "kmtomi") {
+
+            setResult(kilometersToMiles(value))
+
+        } else if (selectValue === "mitokm") {
+
+            setResult(milesToKilometers(value))
+
+        } else if (selectValue === "fttom") {
+
+            setResult(feetToMeters(value))
+
+        } else if (selectValue === "mtoft") {
+
+            setResult(metersToFeet(value))
+
+        } else if (selectValue === "cmtoinch") {
+
+            setResult(centimetersToInches(value))
+
+        } else if (selectValue === "inchtocm") {
+
+            setResult(inchesToCentimeters(value))
+
+        }
+    }
+
 
     return (
         <div>
@@ -44,7 +117,7 @@ export const Converter = () => {
                 <div className="converter-container">
                     <h2 className="converter-title">Convert</h2>
                     <div className="main-content">
-                        <select name="units-selector">
+                        <select name="units-selector" onChange={handelSelect}>
                             <option value="" disabled>Select your option</option>
                             <option value="kmtomi">kilometers to miles</option>
                             <option value="mitokm">miles to kilometers</option>
@@ -55,14 +128,16 @@ export const Converter = () => {
                         </select>
                         <button className="switchBtn"><FaExchangeAlt/></button>
                         <div className="units-input">
-                            <input type="text" id="input-exchanger" onChange={(e) => setInput(e.target.value)} required/>
-                            <label>{"unit"}</label>
+                            <input type="text" id="input-exchanger" onChange={handelInput} required/>
+                            <label>
+                                {fromUnit}
+                            </label>
                         </div>
                     </div>
                     <div className="footer-content">
                         <button className="favBtn"><FaRegHeart/></button>
                         <div></div>
-                        <div className="result-display">{"Result"} <span>{"unit"}</span></div>
+                        <div className="result-display">{result} <span>{toUnit}</span></div>
                     </div>
                 </div>
             </div>
