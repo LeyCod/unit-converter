@@ -52,30 +52,27 @@ export const Converter = () => {
     const handelSelect = (e) => {
         const value = e.target.value;
         setSelectValue(value)
+        setInputValue(0)
+        setResult(0)
+
         if (value === "kmtomi") {
             setFromUnit("km")
             setToUnit("mi")
-//            setResult(kilometersToMiles(inputValue))
         } else if (value === "mitokm") {
             setFromUnit("mi")
             setToUnit("km")
-//            return milesToKilometers(inputValue)
         } else if (value === "fttom") {
             setFromUnit("ft")
             setToUnit("m")
-//            return feetToMeters(inputValue)
         } else if (value === "mtoft") {
             setFromUnit("m")
             setToUnit("ft")
-//            return metersToFeet(inputValue)
         } else if (value === "cmtoinch") {
             setFromUnit("cm")
             setToUnit("inch")
-//            return centimetersToInches(inputValue)
         } else if (value === "inchtocm") {
             setFromUnit("inch")
             setToUnit("cm")
-//            return inchesToCentimeters(inputValue)
         }
     }
 
